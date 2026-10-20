@@ -1,6 +1,15 @@
+<script setup lang="ts">
+import SvgSprite from "~/components/SvgSprite.vue";
+</script>
+
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
+  <SvgSprite />
 </template>
+
+<style lang="less">
+@import "./assets/styles/main.less";
+
+</style>

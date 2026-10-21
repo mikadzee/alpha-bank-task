@@ -1,6 +1,14 @@
+<script setup lang="ts">
+</script>
+
 <template>
-  <slot />
+  <div class="default-layout">
+    <AsideApp/>
+
+    <main class="content">
+      <slot />
+    </main>
+  </div>
 </template>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped src="./default.less"></style>

@@ -1,0 +1,83 @@
+@import "@/assets/styles/vars.less";
+
+.app-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+
+  &:active:not(:disabled) {
+    transform: scale(0.985);
+  }
+
+  &:focus-visible {
+    outline: 3px solid fade(@btnPrimary, 28%);
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.68;
+  }
+
+  &--primary {
+    color: @textWhite;
+    background: @btnPrimary;
+
+    &:hover:not(:disabled) {
+      background: #D92B20;
+      box-shadow: 0 8px 20px fade(@btnPrimary, 22%);
+    }
+  }
+
+  &--secondary {
+    color: #171717;
+    background: #FFFFFF;
+    border-color: @borderDefault;
+
+    &:hover:not(:disabled) {
+      border-color: fade(@btnPrimary, 55%);
+      color: @btnPrimary;
+    }
+  }
+
+  &--dark {
+    color: #FFFFFF;
+    background: #171717;
+
+    &:hover:not(:disabled) {
+      background: #303030;
+      box-shadow: 0 8px 20px fade(#171717, 16%);
+    }
+  }
+
+  & .loader {
+    width: 16px;
+    height: 16px;
+    border: 2px solid fade(#FFFFFF, 45%);
+    border-top-color: #FFFFFF;
+    border-radius: 50%;
+    animation: app-button-spin 700ms linear infinite;
+  }
+}
+
+@keyframes app-button-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-button,
+  .app-button .loader {
+    animation-duration: 0.01ms;
+    transition-duration: 0.01ms;
+  }
+}

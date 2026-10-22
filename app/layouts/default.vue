@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AppSidebar from "~/components/layout/AppSidebar.vue";
+import AppHeader from "~/components/layout/AppHeader.vue";
 </script>
 
 <template>
@@ -7,6 +8,7 @@ import AppSidebar from "~/components/layout/AppSidebar.vue";
     <AppSidebar />
 
     <main class="content">
+      <AppHeader />
       <slot />
     </main>
   </div>

@@ -1,9 +1,8 @@
 <template>
   <svg class="icon">
-    <use :href="'#'+props.icon" />
+    <use :href="'#' + props.icon" />
   </svg>
 </template>
-
 
 <script setup lang="ts">
   const props = defineProps<{
@@ -11,3 +10,5 @@
     size?: number
   }>()
 </script>
+
+<style lang="less" scoped src="./svg-icon.less"></style>

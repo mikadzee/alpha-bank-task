@@ -1,11 +1,12 @@
 <template>
-  <div class="app-input" :class="{ 'app-input--focused': isFocused, 'app-input--filled': hasValue, 'app-input--error': Boolean(props.error), 'app-input--disabled': props.disabled }">
+  <div class="app-input" :class="{ 'app-input--focused': isFocused, 'app-input--filled': hasValue, 'app-input--error': Boolean(props.error), 'app-input--disabled': props.disabled, 'app-input--suffix': Boolean(props.suffix) }">
     <div class="field">
       <input
         :id="inputId"
         :name="props.name"
         :type="inputType"
         :value="props.modelValue"
+        :maxlength="props.maxLength"
         :autocomplete="props.autocomplete"
         :required="props.required"
         :disabled="props.disabled"
@@ -14,6 +15,7 @@
         @focus="isFocused = true"
         @blur="isFocused = false; emit('blur', $event)"
       >
+      <span v-if="props.suffix && hasValue" class="suffix" :style="suffixStyle">{{ props.suffix }}</span>
       <label :for="inputId">{{ props.label }}</label>
       <button
         v-if="props.type === 'password'"
@@ -48,6 +50,9 @@ const props = withDefaults(defineProps<{
   type?: "text" | "email" | "password" | "tel" | "number",
   autocomplete?: string,
   inputmode?: "text" | "email" | "numeric" | "decimal" | "tel" | "search" | "url",
+  format?: "digits" | "amount",
+  maxLength?: number,
+  suffix?: string,
   error?: string,
   hint?: string,
   required?: boolean,
@@ -69,9 +74,50 @@ const isPasswordVisible = ref(false);
 const inputId = computed(() => props.id || props.name);
 const hasValue = computed(() => props.modelValue.length > 0);
 const inputType = computed(() => props.type === "password" && isPasswordVisible.value ? "text" : props.type);
+const suffixStyle = computed(() => {
+  const digits = props.modelValue.match(/\d/g)?.length || 0;
+  const spaces = props.modelValue.match(/ /g)?.length || 0;
+
+  return {
+    left: `${18 + digits * 8.5 + spaces * 4.5 + 4}px`
+  };
+});
 
 function updateValue(event: Event) {
-  emit("update:modelValue", (event.target as HTMLInputElement).value);
+  const input = event.target as HTMLInputElement;
+  const cursor = input.selectionStart || 0;
+  const digitsBeforeCursor = input.value.slice(0, cursor).replace(/\D/g, "").length;
+  let value = input.value;
+
+  if (props.format === "digits") {
+    value = value.replace(/\D/g, "");
+
+    if (props.maxLength) {
+      value = value.slice(0, props.maxLength);
+    }
+  }
+
+  if (props.format === "amount") {
+    value = value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  }
+
+  emit("update:modelValue", value);
+  input.value = value;
+
+  if (props.format) {
+    let nextCursor = 0;
+    let digits = 0;
+
+    while (nextCursor < value.length && digits < digitsBeforeCursor) {
+      if (/\d/.test(value[nextCursor])) {
+        digits += 1;
+      }
+
+      nextCursor += 1;
+    }
+
+    input.setSelectionRange(nextCursor, nextCursor);
+  }
 }
 </script>
 

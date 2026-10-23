@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     height: 62px;
-    padding: 18px 18px 8px;
+    padding: 18px 18px 6px;
     background: #F2F3F5;
     border: 1px solid transparent;
     border-radius: 12px;
@@ -17,7 +17,6 @@
     & > input {
       width: 100%;
       height: 100%;
-      padding: 12px 0 0;
       color: #171717;
       font-size: 16px;
       line-height: 20px;
@@ -26,6 +25,16 @@
 
       &:focus {
         outline: none;
+      }
+
+      &[type="number"] {
+        appearance: textfield;
+
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+          margin: 0;
+          appearance: none;
+        }
       }
     }
 
@@ -45,6 +54,16 @@
       transform: translateY(-50%);
       transform-origin: left top;
       transition: top 180ms ease, color 180ms ease, font-size 180ms ease, transform 180ms ease;
+    }
+
+    & > .suffix {
+      position: absolute;
+      right: 18px;
+      bottom: 11px;
+      color: #8B8B8B;
+      font-size: 16px;
+      line-height: 20px;
+      pointer-events: none;
     }
 
     & > .visibility-button {
@@ -70,6 +89,10 @@
     }
   }
 
+  &--suffix .field > input {
+    padding-right: 26px;
+  }
+
   &--focused .field {
     background: #FFFFFF;
     border-color: @btnPrimary;
@@ -78,7 +101,7 @@
 
   &--focused .field > label,
   &--filled .field > label {
-    top: 10px;
+    top: 8px;
     color: #777B82;
     font-size: 11px;
     line-height: 14px;

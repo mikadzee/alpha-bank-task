@@ -12,7 +12,7 @@ import CheckerHelper from "~/components/shared/status/CheckerHelper.vue";
         помогут достичь ваших целей.</p>
     </div>
 
-    <NuxtLink to="#">
+    <NuxtLink to="/financing">
       <span>
         Начать подбор финансирования
       </span>

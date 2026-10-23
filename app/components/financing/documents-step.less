@@ -1,0 +1,329 @@
+@import "@/assets/styles/vars.less";
+
+.card {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  padding: 32px;
+  border: 1px solid #D4D4D4;
+  border-radius: 28px;
+  background: #FFFFFF;
+
+  & .close {
+    position: absolute;
+    top: 28px;
+    right: 30px;
+    color: #8B8B8B;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 24px;
+  }
+
+  & .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 24px;
+    padding-right: 44px;
+
+    & h1 {
+      color: #080808;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.1px;
+    }
+
+    & p {
+      color: #8B8B8B;
+      font-size: 16px;
+      line-height: 1.35;
+      letter-spacing: 0.1px;
+    }
+  }
+
+  & .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  & .item {
+    display: flex;
+    align-items: center;
+    min-height: 96px;
+    padding: 16px 20px;
+    border-radius: 16px;
+    background: #F2F3F5;
+  }
+
+  & .file-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    flex: 0 0 60px;
+    margin-right: 14px;
+    border: 1px solid #EF3124;
+    border-radius: 12px;
+    color: #EF3124;
+    background: #FFBEBE;
+
+    & > svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  & .info {
+    min-width: 0;
+
+    & h2 {
+      margin-bottom: 6px;
+      color: #080808;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.1px;
+    }
+  }
+
+  & .badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 3px 10px;
+    border: 1px solid #EF3124;
+    border-radius: 100px;
+    color: #EF3124;
+    background: #FFBEBE;
+    font-size: 12px;
+    line-height: 18px;
+
+    &.optional {
+      border-color: #D4D4D4;
+      color: #171717;
+      background: #EAEAEA;
+    }
+  }
+
+  & .file-name {
+    max-width: 460px;
+    overflow: hidden;
+    margin-top: 6px;
+    color: #777B82;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  & .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    margin-left: auto;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1;
+
+    &.success {
+      color: #3EF644;
+
+      & > svg {
+        width: 25px;
+        height: 18px;
+      }
+    }
+  }
+
+  & .upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    height: 56px;
+    flex: 0 0 120px;
+    margin-left: auto;
+    border-radius: 10px;
+    color: #FFFFFF;
+    background: @btnPrimary;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 180ms ease;
+
+    & > input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+    }
+
+    &.retry {
+      min-width: 36px;
+      width: 36px;
+      height: 36px;
+      flex-basis: 36px;
+      padding: 0;
+      color: #FF9317;
+      background: transparent;
+
+      & > svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      &:hover {
+        background: transparent;
+      }
+    }
+
+    &:hover {
+      background: #D92B20;
+    }
+  }
+
+  & .add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 20px;
+    color: #8B8B8B;
+    font-size: 16px;
+    line-height: 24px;
+    transition: color 180ms ease;
+
+    & > span {
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    &:hover {
+      color: #171717;
+    }
+  }
+
+  & .apply {
+    width: 100%;
+    height: 56px;
+    margin-top: 28px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    background: @btnPrimary;
+    font-size: 16px;
+    line-height: 22px;
+    transition: background-color 180ms ease, transform 180ms ease;
+
+    &:hover {
+      background: #D92B20;
+    }
+
+    &:active {
+      transform: scale(0.995);
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .card {
+    padding: 28px 22px;
+    border-radius: 24px;
+
+    & .close {
+      top: 24px;
+      right: 24px;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 24px 16px;
+
+    & .close {
+      top: 20px;
+      right: 18px;
+      font-size: 26px;
+    }
+
+    & .heading {
+      padding-right: 36px;
+
+      & h1 {
+        font-size: 20px;
+      }
+
+      & p {
+        font-size: 14px;
+      }
+    }
+
+    & .item {
+      min-height: 78px;
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    & .file-icon {
+      width: 46px;
+      height: 46px;
+      flex-basis: 46px;
+      margin-right: 10px;
+      border-radius: 10px;
+
+      & > svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    & .info h2 {
+      font-size: 14px;
+    }
+
+    & .badge {
+      min-height: 22px;
+      padding: 2px 8px;
+      font-size: 11px;
+    }
+
+    & .upload {
+      min-width: 82px;
+      height: 42px;
+      flex-basis: 82px;
+      margin-left: 8px;
+      font-size: 12px;
+    }
+
+    & .status {
+      width: 28px;
+      height: 28px;
+      flex-basis: 28px;
+      font-size: 24px;
+    }
+
+    & .add {
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    & .apply {
+      height: 54px;
+      margin-top: 24px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card .upload,
+  .card .add,
+  .card .apply {
+    transition-duration: 0.01ms;
+  }
+}

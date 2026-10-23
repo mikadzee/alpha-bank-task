@@ -24,7 +24,6 @@ const purposes = [
   { value: "equipment", label: "Покупка оборудования" },
   { value: "working-capital", label: "Пополнение оборотных средств" },
   { value: "expansion", label: "Развитие и расширение бизнеса" },
-  { value: "refinancing", label: "Рефинансирование" },
   { value: "other", label: "Другая цель" }
 ];
 

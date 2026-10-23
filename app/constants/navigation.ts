@@ -39,37 +39,3 @@ export const pages: Page[] = [
     path: '/documents',
   },
 ];
-
-// кб сотрудника банка
-export const adminPages: Page[] = [
-  {
-    id: 1,
-    name: 'Обзор',
-    icon: 'icon-dashboard',
-    path: '/admin',
-  },
-  {
-    id: 2,
-    name: 'Заявки клиентов',
-    icon: 'icon-clipboard',
-    path: '/admin/applications',
-  },
-  {
-    id: 3,
-    name: 'Компании',
-    icon: 'icon-building',
-    path: '/admin/companies',
-  },
-  {
-    id: 4,
-    name: 'Кредитные продукты',
-    icon: 'icon-credit-card',
-    path: '/admin/products',
-  },
-  {
-    id: 5,
-    name: 'Аналитика',
-    icon: 'icon-chart',
-    path: '/admin/analytics',
-  },
-];

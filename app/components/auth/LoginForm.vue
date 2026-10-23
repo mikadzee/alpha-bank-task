@@ -31,8 +31,11 @@
           text="Вперед"
           type="submit"
           variant="dark"
+          :loading="store.loading"
         />
       </form>
+
+      <p v-if="store.error" class="request-error">{{ store.error }}</p>
 
       <p class="switch-form">
         Ещё нет аккаунта?
@@ -48,16 +51,23 @@ import AuthHeader from "~/components/auth/AuthHeader.vue";
 import AppButton from "~/components/shared/button/AppButton.vue";
 import AppInput from "~/components/shared/input/AppInput.vue";
 import { validateLoginForm, type AuthErrors } from "~/helpers/authValidation";
+import { useGlobalStore } from "~/stores";
 
 const email = ref("");
 const password = ref("");
 const errors = ref<AuthErrors>({});
+const store = useGlobalStore();
 
-function submitLogin() {
+async function submitLogin() {
   errors.value = validateLoginForm(email.value, password.value);
   if (Object.keys(errors.value).length) return;
 
-  // тута логика
+  try {
+    await store.login({ email: email.value, password: password.value });
+    await navigateTo("/");
+  } catch {
+    return;
+  }
 }
 </script>
 

@@ -52,7 +52,7 @@ function uploadFile(event: Event, id: string) {
           <SvgIcon icon="icon-upload-success" />
         </span>
         <label v-else class="upload" :class="{ retry: document.status === 'error' }">
-          <input type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx,.md" @change="uploadFile($event, document.id)">
+          <input type="file" accept=".pdf,.jpg,.jpeg,.png" @change="uploadFile($event, document.id)">
           <span v-if="document.status === 'empty'">Загрузить</span>
           <SvgIcon v-else icon="icon-upload-retry" />
         </label>

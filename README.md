@@ -1,75 +1,29 @@
-# Nuxt Minimal Starter
+# Alfa Bank frontend
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Nuxt 3 интерфейс личного кабинета предпринимателя.
 
-## Setup
+## Текущий объём
 
-Make sure to install dependencies:
+- Вход и регистрация по email и паролю.
+- Главная страница кабинета.
+- Заявка: компания, финансы, документы и подбор кредита.
+- Глобальное состояние пользователя и заявки находится в Pinia.
+- Все запросы к backend запускаются через actions глобального store.
 
-```bash
-# npm
-npm install
+Экраны сотрудника банка, альтернативные предложения, история решений, уведомления и настройки пока не входят в текущую версию. Дизайн клиентского кабинета и экранов авторизации сохраняется.
 
-# pnpm
-pnpm install
+Актуальный контракт для backend-разработчика находится в docs/backend-tz-mvp.md.
 
-# yarn
-yarn install
+## Запуск
 
-# bun
-bun install
-```
+    npm install
+    cp .env.example .env
+    npm run dev
 
-## Development Server
+В .env укажи адрес backend, например:
 
-Start the development server on `http://localhost:3000`:
+    NUXT_PUBLIC_API_BASE_URL=http://localhost:8000/api/v1
 
-```bash
-# npm
-npm run dev
+## Проверка сборки
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+    npm run build

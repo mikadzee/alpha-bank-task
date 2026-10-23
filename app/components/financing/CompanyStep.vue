@@ -12,18 +12,20 @@ type CompanyData = {
 };
 
 defineProps<{
-  company: CompanyData
+  company: CompanyData,
+  companyFound: boolean | null
 }>();
 
 const emit = defineEmits<{
   close: [],
-  apply: []
+  apply: [],
+  lookup: [inn: string]
 }>();
 
 const activities = [
-  { value: "production", label: "Производственное оборудование (ОКВЭД 28.99)" },
-  { value: "trade", label: "Оптовая торговля" },
-  { value: "services", label: "Услуги для бизнеса" },
+  { value: "28.99", label: "Производственное оборудование (ОКВЭД 28.99)" },
+  { value: "46.90", label: "Оптовая торговля (ОКВЭД 46.90)" },
+  { value: "82.99", label: "Услуги для бизнеса (ОКВЭД 82.99)" },
   { value: "other", label: "Другое" }
 ];
 
@@ -49,9 +51,14 @@ const activityLabel = (value: string) => activities.find((item) => item.value ==
           format="digits"
           :max-length="12"
           autocomplete="off"
+          @blur="emit('lookup', company.inn)"
           required
         />
-        <CheckerHelper v-if="company.inn.length === 10 || company.inn.length === 12" type="success" text="Найден" />
+        <CheckerHelper
+          v-if="companyFound !== null"
+          :type="companyFound ? 'success' : 'error'"
+          :text="companyFound ? 'Найден' : 'Не найден'"
+        />
       </div>
 
       <AppInput
@@ -62,7 +69,6 @@ const activityLabel = (value: string) => activities.find((item) => item.value ==
         format="digits"
         :max-length="13"
         autocomplete="off"
-        required
       />
 
       <div class="row">
@@ -78,7 +84,6 @@ const activityLabel = (value: string) => activities.find((item) => item.value ==
           name="company-address"
           label="Адрес"
           autocomplete="street-address"
-          required
         />
       </div>
 

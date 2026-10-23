@@ -10,7 +10,7 @@
       <p>ИНН {{inn}}</p>
     </div>
 
-    <button @click="null" class="more-btn">
+    <button type="button" class="more-btn">
       <SvgIcon icon="icon-arrow-botton" />
     </button>
 
@@ -28,7 +28,7 @@ import SvgIcon from "~/components/shared/icons/SvgIcon.vue";
 defineProps<{
   avatar?: string;
   name: string;
-  inn: number;
+  inn: string | number;
 }>()
 </script>
 

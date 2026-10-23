@@ -2,6 +2,8 @@ import { defineStore } from "pinia";
 
 export type FinancingDocument = {
   id: string,
+  type: "egrul_extract" | "accounting_report" | "tax_certificate" | "bank_statement" | "other",
+  documentId: string,
   title: string,
   required: boolean,
   status: "success" | "error" | "empty",
@@ -12,7 +14,7 @@ export type FinancingDocument = {
 export const useFinancingStore = defineStore("financing", {
   state: () => ({
     step: 0,
-    loading: false,
+    submitted: false,
     company: {
       inn: "",
       ogrn: "",
@@ -32,7 +34,9 @@ export const useFinancingStore = defineStore("financing", {
     },
     documents: [
       {
-        id: "egrul",
+        id: "egrul-extract",
+        type: "egrul_extract",
+        documentId: "",
         title: "Выписка из ЕГРЮЛ",
         required: true,
         status: "empty",
@@ -40,7 +44,9 @@ export const useFinancingStore = defineStore("financing", {
         file: null
       },
       {
-        id: "accounting",
+        id: "accounting-report",
+        type: "accounting_report",
+        documentId: "",
         title: "Бухгалтерская отчетность",
         required: true,
         status: "empty",
@@ -48,7 +54,9 @@ export const useFinancingStore = defineStore("financing", {
         file: null
       },
       {
-        id: "tax-debt",
+        id: "tax-certificate",
+        type: "tax_certificate",
+        documentId: "",
         title: "Справка о налоговой задолженности",
         required: true,
         status: "empty",
@@ -57,6 +65,8 @@ export const useFinancingStore = defineStore("financing", {
       },
       {
         id: "bank-statement",
+        type: "bank_statement",
+        documentId: "",
         title: "Выписка по расчетному счету",
         required: false,
         status: "empty",
@@ -67,13 +77,15 @@ export const useFinancingStore = defineStore("financing", {
   }),
   actions: {
     nextStep() {
-      if (this.step < 2) {
+      if (this.step < 3) {
         this.step += 1;
       }
     },
     addDocument() {
       this.documents.push({
         id: `extra-${Date.now()}`,
+        type: "other",
+        documentId: "",
         title: "Дополнительный документ",
         required: false,
         status: "empty",
@@ -81,43 +93,35 @@ export const useFinancingStore = defineStore("financing", {
         file: null
       });
     },
-    uploadDocument(id: string, file: File) {
+    setDocumentUploaded(id: string, file: File, documentId: string) {
       const document = this.documents.find((item) => item.id === id);
 
       if (document) {
-        const supportedFormats = ["pdf", "jpg", "jpeg", "png", "doc", "docx", "xls", "xlsx"];
-        const format = file.name.split(".").pop()?.toLowerCase();
-
-        if (!format || !supportedFormats.includes(format)) {
-          document.fileName = "";
-          document.file = null;
-          document.status = "error";
-          return;
-        }
-
+        document.documentId = documentId;
         document.fileName = file.name;
         document.file = file;
         document.status = "success";
       }
     },
-    apply() {
-      console.log("Данные формы Pinia:", {
-        company: { ...this.company },
-        finance: { ...this.finance },
-        documents: this.documents.map((document) => ({
-          ...document,
-          file: document.file ? {
-            name: document.file.name,
-            size: document.file.size,
-            type: document.file.type
-          } : null
-        }))
-      });
+    setDocumentError(id: string) {
+      const document = this.documents.find((item) => item.id === id);
 
-      this.step = 3;
-      this.loading = true;
+      if (document) {
+        document.status = "error";
+      }
+    },
+    removeDocument(id: string) {
+      const document = this.documents.find((item) => item.id === id);
 
-      // logika tyt
+      if (document) {
+        document.documentId = "";
+        document.fileName = "";
+        document.file = null;
+        document.status = "empty";
+      }
+    },
+    setSubmitted() {
+      this.submitted = true;
     }
   }
 });

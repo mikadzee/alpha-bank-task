@@ -9,7 +9,9 @@ import AppHeader from "~/components/layout/AppHeader.vue";
 
     <main class="content">
       <AppHeader />
-      <slot />
+      <div class="container">
+        <slot />
+      </div>
     </main>
   </div>
 </template>

@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { pages } from "~/constants/navigation";
-import SvgIcon from "~/components/shared/SvgIcon.vue";
+import SvgIcon from "~/components/shared/icons/SvgIcon.vue";
 </script>
 
 <style lang="less" scoped src="./navigation.less"></style>

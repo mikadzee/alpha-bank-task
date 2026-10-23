@@ -45,8 +45,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import AuthHeader from "~/components/auth/AuthHeader.vue";
-import AppButton from "~/components/shared/AppButton.vue";
-import AppInput from "~/components/shared/AppInput.vue";
+import AppButton from "~/components/shared/button/AppButton.vue";
+import AppInput from "~/components/shared/input/AppInput.vue";
 import { validateLoginForm, type AuthErrors } from "~/helpers/authValidation";
 
 const email = ref("");

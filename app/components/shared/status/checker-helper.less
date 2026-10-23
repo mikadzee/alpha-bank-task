@@ -1,0 +1,44 @@
+@import "@/assets/styles/vars.less";
+
+.checker-helper {
+  padding: 4px 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  border: 1px solid transparent;
+  border-radius: 100px;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+
+  & > p {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    text-align: center;
+  }
+
+  &.success {
+    color: #171717;
+    background: #D8FFE1;
+    border-color: #00E533;
+  }
+
+  &.error {
+    color: @btnPrimary;
+    background: #FFE6E4;
+    border-color: @btnPrimary;
+  }
+
+  &.pending {
+    color: #8A5A00;
+    background: #FFF3D6;
+    border-color: #F2B544;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checker-helper {
+    transition-duration: 0.01ms;
+  }
+}

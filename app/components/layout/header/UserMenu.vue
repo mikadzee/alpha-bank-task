@@ -21,7 +21,7 @@
 
 
 <script setup lang="ts">
-import SvgIcon from "~/components/shared/SvgIcon.vue";
+import SvgIcon from "~/components/shared/icons/SvgIcon.vue";
 
 defineProps<{
   avatar?: string;

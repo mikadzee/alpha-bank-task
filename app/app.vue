@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SvgSprite from "~/components/shared/SvgSprite.vue";
+import SvgSprite from "~/components/shared/icons/SvgSprite.vue";
 </script>
 
 <template>

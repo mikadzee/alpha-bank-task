@@ -3,5 +3,8 @@ import FinancingWizard from "~/components/financing/FinancingWizard.vue";
 </script>
 
 <template>
-  <FinancingWizard />
+  <div class="financing">
+    <FinancingWizard />
+
+  </div>
 </template>

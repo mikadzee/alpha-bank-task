@@ -30,7 +30,7 @@ async function logout() {
       <p>{{type}}</p>
     </div>
     <button type="button" class="more-btn" @click="isOpen = !isOpen">
-      <SvgIcon icon="icon-arrow-botton" />
+      <SvgIcon icon="icon-arrow-bottom" />
     </button>
 
     <div v-if="isOpen" class="more">

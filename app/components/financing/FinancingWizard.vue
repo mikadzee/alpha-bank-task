@@ -114,7 +114,7 @@ async function lookupCompany(inn: string) {
 
 async function saveCompany() {
   try {
-    await global.saveCompany(financing.company);
+    // await global.saveCompany(financing.company);
     financing.nextStep();
   } catch {
     return;
@@ -123,7 +123,7 @@ async function saveCompany() {
 
 async function saveFinance() {
   try {
-    await global.saveFinance(financing.finance);
+    // await global.saveFinance(financing.finance);
     financing.nextStep();
   } catch {
     return;
@@ -154,7 +154,7 @@ async function loadRecommendations() {
   }
 
   try {
-    await global.loadRecommendations();
+    // await global.loadRecommendations();
     financing.nextStep();
   } catch {
     return;
@@ -163,7 +163,7 @@ async function loadRecommendations() {
 
 async function submitApplication(productId: string) {
   try {
-    await global.submitApplication(productId);
+    // await global.submitApplication(productId);
     financing.setSubmitted();
   } catch {
     return;

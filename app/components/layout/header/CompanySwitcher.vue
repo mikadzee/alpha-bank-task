@@ -11,7 +11,7 @@
     </div>
 
     <button type="button" class="more-btn">
-      <SvgIcon icon="icon-arrow-botton" />
+      <SvgIcon icon="icon-arrow-bottom" />
     </button>
 
     <div class="more">

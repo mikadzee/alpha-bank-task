@@ -1,0 +1,86 @@
+.global-loader {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: fade(#FFFFFF, 82%);
+  backdrop-filter: blur(5px);
+
+  & .loader-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 190px;
+    padding: 24px 30px 20px;
+    border: 1px solid #EEEEEE;
+    border-radius: 20px;
+    background: #FFFFFF;
+    box-shadow: 0 12px 40px fade(#171717, 10%);
+  }
+
+  & .loader-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-bottom: 18px;
+    border-radius: 11px;
+    background: #EF3124;
+
+    & > span {
+      color: #FFFFFF;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1;
+    }
+  }
+
+  & .loader-circle {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #F8D5D2;
+    border-top-color: #EF3124;
+    border-radius: 50%;
+    animation: global-loader-spin 750ms linear infinite;
+  }
+
+  & p {
+    margin-top: 12px;
+    color: #777B82;
+    font-size: 13px;
+    line-height: 18px;
+  }
+}
+
+.loader-fade-enter-active,
+.loader-fade-leave-active {
+  transition: opacity 160ms ease;
+}
+
+.loader-fade-enter-active .loader-card,
+.loader-fade-leave-active .loader-card {
+  transition: transform 160ms ease;
+}
+
+.loader-fade-enter-from,
+.loader-fade-leave-to {
+  opacity: 0;
+}
+
+.loader-fade-enter-from .loader-card,
+.loader-fade-leave-to .loader-card {
+  transform: translateY(5px) scale(0.98);
+}
+
+@keyframes global-loader-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .global-loader .loader-circle {
+    animation-duration: 2s;
+  }
+}

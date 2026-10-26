@@ -1,0 +1,55 @@
+.dashboard {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border-radius: 32px;
+  align-items: flex-start;
+  background-image: url("/images/banners/alfaBanner.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  & .text {
+    max-width: 628px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    & h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    & p {
+      font-size: 1rem;
+      color: #000;
+    }
+  }
+
+  & > a {
+    padding: 17px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #EF3124;
+    border-radius: 10px;
+    color: #fff;
+
+
+    & > svg {
+      width: 16px;
+      height: 12px;
+    }
+  }
+
+  & .demo-note {
+    max-width: 540px;
+    margin-top: -24px;
+    color: #777;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}

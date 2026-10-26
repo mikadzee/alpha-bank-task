@@ -1,0 +1,67 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-alpha_bank}
+      POSTGRES_USER: ${DB_USER:-alpha_bank}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-alpha_bank_local}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-alpha_bank} -d ${DB_NAME:-alpha_bank}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-alpha_bank}
+      DB_USER: ${DB_USER:-alpha_bank}
+      DB_PASSWORD: ${DB_PASSWORD:-alpha_bank_local}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-local-alpha-bank-secret-change-before-deployment}
+      FRONTEND_ORIGIN: http://localhost:3000
+      UPLOADS_DIRECTORY: /app/backend/uploads
+      REFRESH_COOKIE_SECURE: ${REFRESH_COOKIE_SECURE:-false}
+      DEMO_EMPLOYEE_EMAIL: ${DEMO_EMPLOYEE_EMAIL:-reviewer@creditory.local}
+      DEMO_EMPLOYEE_PASSWORD: ${DEMO_EMPLOYEE_PASSWORD:-ReviewerDemo2026!}
+      ENABLE_DEMO_ACCOUNTS: ${ENABLE_DEMO_ACCOUNTS:-true}
+      DEMO_CLIENT_EMAIL: ${DEMO_CLIENT_EMAIL:-demo@creditory.local}
+      DEMO_CLIENT_PASSWORD: ${DEMO_CLIENT_PASSWORD:-ClientDemo2026!}
+    ports:
+      - "8000:8000"
+    volumes:
+      - uploads_data:/app/backend/uploads
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/healthz')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      NUXT_PUBLIC_API_BASE: ${NUXT_PUBLIC_API_BASE:-http://localhost:8000/api/v1}
+      HOST: 0.0.0.0
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
+  uploads_data:

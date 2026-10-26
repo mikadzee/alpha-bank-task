@@ -1,0 +1,49 @@
+.financing {
+  width: 100%;
+  max-width: 1720px;
+  margin: 0 auto;
+
+  & .request-error {
+    margin: -12px 0 16px;
+    color: #D93025;
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  & .review-request {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px;
+    padding: 13px 15px;
+    border: 1px solid #9ADCF3;
+    border-radius: 11px;
+    color: #17687F;
+    background: #E5F8FE;
+    font-size: 13px;
+    line-height: 19px;
+  }
+
+  & .form-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 240px;
+    color: #777B82;
+    font-size: 14px;
+
+    &__spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #F8D5D2;
+      border-top-color: #EF3124;
+      border-radius: 50%;
+      animation: financing-loader-spin 700ms linear infinite;
+    }
+  }
+}
+
+@keyframes financing-loader-spin {
+  to { transform: rotate(360deg); }
+}

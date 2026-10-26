@@ -1,0 +1,134 @@
+.card {
+  position: relative;
+  width: 100%;
+  padding: 32px;
+  border: 1px solid #D4D4D4;
+  border-radius: 28px;
+  background: #FFFFFF;
+
+  & .close {
+    position: absolute;
+    top: 28px;
+    right: 30px;
+    color: #8B8B8B;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 24px;
+  }
+
+  & .heading {
+    margin-bottom: 24px;
+    padding-right: 44px;
+
+    & h1 {
+      color: #080808;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    & p {
+      margin-top: 4px;
+      color: #8B8B8B;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+  }
+
+  & .list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  & .empty,
+  & .submitted {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    color: #777B82;
+    font-size: 15px;
+    line-height: 22px;
+    text-align: center;
+  }
+
+  & .submitted {
+    & h2 {
+      margin-top: 16px;
+      color: #171717;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    & p {
+      margin-top: 6px;
+    }
+  }
+
+  & .success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #E8FFEA;
+
+    & > :deep(svg) {
+      width: 25px;
+      height: 18px;
+      color: #3EF644;
+    }
+
+    &.approved { background: #E8FFEA; color: #16883A; }
+    &.pending { background: #FFF5D9; color: #8A5B00; }
+    &.rejected { background: #FFF0EF; color: #B42318; font-size: 34px; }
+    &.needs-info { background: #E5F8FE; color: #17687F; }
+  }
+
+  & .review-comment { max-width: 680px; margin-top: 14px; padding: 13px 16px; border-radius: 12px; color: #17687F; background: #E5F8FE; text-align: left; }
+
+  & .timeline { display: grid; width: min(100%, 560px); gap: 0; margin: 22px auto 0; padding: 0; list-style: none; text-align: left; }
+  & .timeline li { display: flex; gap: 12px; padding: 0 0 17px; }
+  & .timeline-dot { width: 10px; height: 10px; flex: 0 0 10px; margin-top: 4px; border: 2px solid #EF3124; border-radius: 50%; background: #fff; }
+  & .timeline li > div { display: grid; gap: 3px; }
+  & .timeline b { color: #262626; font-size: 13px; }
+  & .timeline small { color: #898989; font-size: 11px; }
+  & .timeline p { margin-top: 2px; color: #696969; font-size: 12px; }
+
+  & .counteroffer { display: grid; width: min(100%, 560px); grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; padding: 18px; border: 1px solid #E7E7E7; border-radius: 16px; background: #F6F6F7; text-align: left; }
+  & .counteroffer h3 { grid-column: 1 / -1; color: #222; font-size: 15px; }
+  & .counteroffer div { display: grid; gap: 4px; }
+  & .counteroffer span { color: #858585; font-size: 12px; }
+  & .counteroffer b { color: #222; font-size: 14px; }
+  & .counteroffer .total { grid-column: 1 / -1; padding-top: 10px; border-top: 1px solid #E1E1E1; }
+  & .offer-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 16px; }
+  & .offer-actions button,.new-request { padding: 11px 16px; border: 0; border-radius: 10px; font-size: 13px; font-weight: 600; text-decoration: none; cursor: pointer; }
+  & .offer-actions .accept-offer,.new-request { color: #fff; background: #EF3124; }
+  & .offer-actions .decline-offer { color: #333; background: #EFEFF0; }
+  & .new-request { display: inline-block; margin-top: 18px; }
+}
+
+@media (max-width: 800px) {
+  .card {
+    padding: 26px 22px;
+
+    & .list {
+      grid-template-columns: 1fr;
+    }
+    & .counteroffer { grid-template-columns: 1fr; }
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 24px 16px;
+    border-radius: 20px;
+
+    & .heading h1 {
+      font-size: 20px;
+    }
+  }
+}

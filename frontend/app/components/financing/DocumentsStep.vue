@@ -3,7 +3,8 @@ import SvgIcon from "~/components/shared/icons/SvgIcon.vue";
 import type { FinancingDocument } from "~/stores/financing";
 
 defineProps<{
-  documents: FinancingDocument[]
+  documents: FinancingDocument[],
+  loading?: boolean
 }>();
 
 const emit = defineEmits<{
@@ -64,7 +65,9 @@ function uploadFile(event: Event, id: string) {
       Добавить дополнительный документ
     </button>
 
-    <button class="apply" type="submit">Применить</button>
+    <button class="apply" type="submit" :disabled="loading">
+      {{ loading ? "Готовим предложения…" : "Применить" }}
+    </button>
   </form>
 </template>
 

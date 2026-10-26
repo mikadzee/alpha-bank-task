@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import SvgIcon from "~/components/shared/icons/SvgIcon.vue";
 import CreditsResult from "~/components/financing/CreditsResult.vue";
 
@@ -32,6 +33,10 @@ const emit = defineEmits<{
   select: [productId: string],
   offerDecision: [decision: "accept" | "decline"]
 }>();
+const expandedOfferId = ref<string | null>(null);
+function toggleOffer(productId: string) {
+  expandedOfferId.value = expandedOfferId.value === productId ? null : productId;
+}
 const reviewStates: Record<string, { title: string, description: string, tone: string }> = {
   pending: { title: "Заявка на рассмотрении", description: "Банк проверяет данные и документы. Статус появится здесь после решения.", tone: "pending" },
   approved: { title: "Заявка одобрена", description: "Банк подтвердил финансирование. Дальнейшие шаги согласуются с менеджером банка.", tone: "approved" },
@@ -99,6 +104,8 @@ const money = (value?: number) => value == null ? "—" : `${new Intl.NumberForm
         v-for="offer in props.recommendations"
         :key="offer.productId"
         :offer="offer"
+        :expanded="expandedOfferId === offer.productId"
+        @toggle="toggleOffer(offer.productId)"
         @select="emit('select', $event)"
       />
     </div>

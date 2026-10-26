@@ -21,6 +21,6 @@ Direct application dependencies and their licenses at the time of this MVP. The 
 | Python | `backend/Dockerfile` | PSF License |
 | Node.js | `frontend/Dockerfile` | MIT License |
 
-Transitive dependencies retain the license metadata and package notices shipped with the corresponding npm package or Python distribution. The project does not bundle a third-party AI model, pretrained weights, external news dataset, or proprietary document corpus. Demo company/product data and the sample PDFs are synthetic and authored for this project.
+Transitive dependencies retain the license metadata and package notices shipped with the corresponding npm package or Python distribution. The runtime does not call a third-party AI model or hosted inference service and does not bundle model weights. It does not use an external news dataset or proprietary document corpus. Demo company/product data and the sample PDFs are synthetic and authored for this project.
 
 For redistribution, retain the notices required by each dependency and review the full transitive package inventory from the lockfile and installed Python environment for the release build.

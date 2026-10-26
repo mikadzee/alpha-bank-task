@@ -101,7 +101,7 @@ async function decide(decision: "approved" | "rejected" | "needs_info" | "counte
 
 <template>
   <section class="review-page">
-    <NuxtLink class="back-link" to="/staff"><SvgIcon icon="icon-arrow-right" />К очереди заявок</NuxtLink>
+    <NuxtLink class="back-link" to="/staff"><SvgIcon icon="icon-arrow-left" />К очереди заявок</NuxtLink>
 
     <div v-if="loading" class="review-loading"><span></span>Открываем заявку</div>
     <div v-else-if="!detail" class="review-error-page">
@@ -235,7 +235,7 @@ async function decide(decision: "approved" | "rejected" | "needs_info" | "counte
 
 .review-page { max-width: 1500px; margin: 0 auto; color: #171717; }
 .back-link { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 22px; color: #777B82; font-size: 13px; }
-.back-link :deep(svg) { width: 12px; height: 12px; transform: rotate(180deg); }
+.back-link :deep(svg) { width: 16px; height: 16px; }
 .review-heading { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-bottom: 22px; }
 .review-heading h1 { margin-top: 7px; font-size: 28px; line-height: 36px; }
 .review-heading p { margin-top: 5px; color: #777B82; font-size: 14px; }

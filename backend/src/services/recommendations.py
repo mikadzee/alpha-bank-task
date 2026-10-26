@@ -23,7 +23,7 @@ def _payment(amount: int, months: int, annual_rate: Decimal) -> tuple[int, int]:
     return _money(exact_payment), _money(exact_payment * months)
 
 
-def build_recommendations(cur, financial_data: dict[str, Any]) -> dict[str, list[dict[str, Any]]]:
+def build_recommendations(cur, financial_data: dict[str, Any]) -> dict[str, Any]:
     cur.execute(
         """SELECT id, code, name, purpose, description, min_amount, max_amount,
                   min_term_months, max_term_months, annual_rate

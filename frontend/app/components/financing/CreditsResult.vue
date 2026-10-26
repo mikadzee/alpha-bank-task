@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import CheckerHelper from "~/components/shared/status/CheckerHelper.vue";
 import SvgIcon from "~/components/shared/icons/SvgIcon.vue";
 
@@ -22,14 +21,15 @@ type Recommendation = {
 };
 
 const props = defineProps<{
-  offer: Recommendation
+  offer: Recommendation,
+  expanded: boolean
 }>();
 
 const emit = defineEmits<{
-  select: [productId: string]
+  select: [productId: string],
+  toggle: []
 }>();
 
-const expanded = ref(false);
 const formatMoney = (value: number) => new Intl.NumberFormat("ru-RU").format(value);
 
 function getTerm(months: number) {
@@ -81,12 +81,21 @@ function getTerm(months: number) {
       </div>
     </div>
 
-    <button class="explain" type="button" @click="expanded = !expanded">
+    <button class="explain" type="button" :aria-expanded="props.expanded" @click="emit('toggle')">
       <span>Как рассчитано предложение</span>
-      <SvgIcon icon="icon-arrow-bottom" :class="{ opened: expanded }" />
+      <SvgIcon icon="icon-arrow-bottom" :class="{ opened: props.expanded }" />
     </button>
 
-    <div v-if="expanded" class="details">
+    <div v-if="props.expanded" class="details">
+      <section class="calculation-panel">
+        <span class="calculation-label">
+          <SvgIcon icon="icon-info-circle" />
+          Расчёт системы
+        </span>
+        <p>Платёж рассчитан по сумме, сроку и ставке кредитного продукта. Рекомендация учитывает выбранную цель и заявленный денежный поток.</p>
+        <small>Условия демонстрационные. Это не скоринг и не решение банка.</small>
+      </section>
+
       <div v-for="reason in props.offer.reasons" :key="reason.title" class="reason">
         <b>{{ reason.title }}</b>
         <p>{{ reason.description }}</p>

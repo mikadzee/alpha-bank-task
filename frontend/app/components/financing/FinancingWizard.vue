@@ -329,6 +329,7 @@ async function decideOffer(decision: "accept" | "decline") {
       <DocumentsStep
         v-else-if="financing.step === 2"
         :documents="financing.documents"
+        :loading="global.recommendationsLoading"
         @close="closeForm"
         @apply="loadRecommendations"
         @add="financing.addDocument"

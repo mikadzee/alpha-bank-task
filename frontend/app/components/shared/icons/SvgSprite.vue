@@ -85,6 +85,20 @@
       <path d="M9.28772 10.8328C9.6761 11.2351 10.3242 11.2463 10.7196 10.8509L15.2929 6.27766C15.6834 5.88714 15.6834 5.25397 15.2929 4.86345L10.7196 0.290178C10.3242 -0.105199 9.6761 -0.0939779 9.28772 0.308274C8.90886 0.700669 8.90912 1.32968 9.29481 1.71537L12.15 4.57056H1C0.447716 4.57056 0 5.01827 0 5.57056C0 6.12284 0.447715 6.57056 1 6.57056H12.15L9.29481 9.42575C8.90912 9.81144 8.90886 10.4404 9.28772 10.8328Z" fill="#FBFAFA"/>
     </symbol>
 
+    <symbol id="icon-arrow-left" viewBox="0 0 24 24">
+      <path d="M19 12H5m0 0 7-7m-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
+
+    <symbol id="icon-sparkle" viewBox="0 0 24 24">
+      <path d="M12 2.5 14.2 9.8 21.5 12l-7.3 2.2L12 21.5l-2.2-7.3L2.5 12l7.3-2.2L12 2.5Z" fill="currentColor" />
+      <path d="m19 2 .8 2.2L22 5l-2.2.8L19 8l-.8-2.2L16 5l2.2-.8L19 2Z" fill="currentColor" />
+    </symbol>
+
+    <symbol id="icon-info-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
+      <path d="M12 11v5m0-8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </symbol>
+
   </svg>
 </template>
 

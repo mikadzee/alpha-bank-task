@@ -69,6 +69,7 @@ export const useGlobalStore = defineStore("global", {
     application: null as Application | null,
     applications: [] as Application[],
     recommendations: [] as Recommendation[],
+    recommendationsLoading: false,
     products: [] as Array<Record<string, any>>,
     feed: [] as Array<Record<string, any>>,
     staffApplications: [] as StaffApplication[],
@@ -594,7 +595,7 @@ export const useGlobalStore = defineStore("global", {
           purposeDetails: finance.purpose === "other" ? finance.otherPurpose : finance.details
         };
 
-        const result = await this.request(() => serviceApplications.update(id, { financialData })) as Application;
+        const result = await this.request(() => serviceApplications.update(id, { financialData }), true, false) as Application;
         this.application = result;
         this.updateApplicationList(result);
         return result;
@@ -649,15 +650,18 @@ export const useGlobalStore = defineStore("global", {
     },
 
     async loadRecommendations() {
+      this.recommendationsLoading = true;
       try {
         const id = await this.ensureDraft();
-        const result = await this.request(() => serviceApplications.recommendations(id)) as {
+        const result = await this.request(() => serviceApplications.recommendations(id), true, false) as {
           recommendations?: Recommendation[]
         } | Recommendation[];
         this.recommendations = Array.isArray(result) ? result : result.recommendations || [];
         return this.recommendations;
       } catch (error) {
         throw error;
+      } finally {
+        this.recommendationsLoading = false;
       }
     },
 

@@ -82,7 +82,7 @@ docs/       Архитектура, схема данных, статусы, т�
 docker-compose.yaml
 ```
 
-Подробности: [архитектура](docs/architecture.md), [жизненный цикл](docs/application-lifecycle.md), [модель данных](docs/data-model.md), [коллекция Postman](docs/alpha-bank.postman_collection.json).
+Подробности: [архитектура](docs/architecture.md), [описание API и контрактов](docs/backend-tz-mvp.md), [жизненный цикл](docs/application-lifecycle.md), [модель данных](docs/data-model.md), [тестовые сценарии](docs/test-scenarios.md), [коллекция Postman](docs/alpha-bank.postman_collection.json). Интерактивная документация API доступна в Swagger по адресу http://localhost:8000/docs.
 
 ## Перед отправкой на оценку
 
